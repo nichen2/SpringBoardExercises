@@ -1,0 +1,73 @@
+* {
+  /* box-sizing: border-box; */
+}
+
+body {
+  font-family: 'Tisa', sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;  /* Centers horizontally */
+  align-items: flex-start;      /* Centers vertically */
+  padding-top: 40vh;
+  background-image: linear-gradient(to left, rgb(255, 115, 0), yellow);
+}
+
+input {
+ /* TODO */
+}
+
+.search-container {
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+.search-container input, 
+.search-container .suggestions ul {
+  width: 300px; /* Width consistency */
+  border: 1px solid #f0950d;
+  box-sizing: border-box; /* to include the border and padding in the element's total width and height */
+  transition: border-color 0.3s ease; /* Smooth border transition */
+}
+
+.search-container input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px 4px 0 0; /* Rounded corners at the top */
+  outline: none; /* Remove default focus outline */
+  background-color: rgba(255,255,255,0.1);
+}
+.search-container .suggestions {
+  
+}
+
+.search-container input:focus {
+  border-color: #007bff;
+}
+
+ul {
+  /* TODO */
+  margin-left: 200px;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+ul.has-suggestions {
+  /* TODO */
+}
+ul li {
+  list-style-type: none;
+  cursor: pointer;
+  text-align: left;
+  background-color: rgba(255,255,255,0.1);
+}
+ul li:hover {
+  background-color: rgb(255, 81, 0);
+  font-weight: 900;
+}
+
+input {
+   /* TODO */
+}
