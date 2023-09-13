@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rate My Movies</title>
+  </head>
+  <body>
+    <form>
+        <input type="text" id="movie-name" placeholder="Input Movie Name!">
+        <input type="number" id="movie-rating" placeholder="Input Movie Rating!">
+        <button id="submit-button">Add Rating</button>
+    </form>
+    <ul>
+        <!-- Add Movie Ratings Here -->
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script>
+        let movieName;
+        let movieRating;
+        $('#movie-name').change(() => {
+            movieName = $('#movie-name').val();
+        });
+        $('#movie-rating').change(() => {
+            movieRating = $('#movie-rating').val();
+        });
+        $('button').click(function(e) {
+            e.preventDefault();
+            $('ul').append($("<li>",{text: `Movie Name:${movieName} | Rating:${movieRating}`}));
+            $('li:last-child').append($("<button>",{text: "Remove"}));
+            $('li button').addClass('remove');
+            $('#movie-name').val('');
+            $('#movie-rating').val('');
+        });
+        $('ul').on("click",".remove",function(e) {
+            e.preventDefault();
+            e.target.parentElement.remove();
+        });
+    </script>
+  </body>
+</html>
