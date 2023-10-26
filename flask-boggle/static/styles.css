@@ -1,0 +1,51 @@
+.gameboard-container {
+    display: grid;
+    grid-template-columns: repeat(5, 50px); /* Adjusted for 50px squares */
+    grid-template-rows: repeat(5, 50px); /* Added this for rows */
+    align-items: center;
+    justify-content: center;
+}
+
+.game-square {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    height: 48px; /* 50px - 2*1px for the border */
+    width: 48px; /* 50px - 2*1px for the border */
+    text-align: center;
+
+    /* To vertically and horizontally align the content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.guess-container{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-container{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-timer{
+    margin-right: 5px;
+}
+#guess-button{
+    text-align: center;
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+span{
+    margin-left: 45px;
+}
+
