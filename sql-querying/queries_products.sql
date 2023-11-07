@@ -1,0 +1,6 @@
+-- 1. INSERT INTO products (name, price, can_be_returned) VALUES ('chair',44.00,FALSE);
+-- 2. INSERT INTO products (name, price, can_be_returned) VALUES ('stool',25.99,TRUE); 
+-- 3. INSERT INTO products (name, price, can_be_returned) VALUES ('table',124.00,FALSE);
+-- 4. SELECT * FROM products;
+-- 5. SELECT name FROM products;
+-- 6. SELECT name, price FROM products;
