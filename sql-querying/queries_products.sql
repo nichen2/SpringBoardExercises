@@ -4,3 +4,11 @@
 -- 4. SELECT * FROM products;
 -- 5. SELECT name FROM products;
 -- 6. SELECT name, price FROM products;
+-- 7. INSERT INTO products (name, price, can_be_returned) VALUES ('couch',240.00,TRUE);
+-- 8. SELECT * FROM products WHERE can_be_returned;
+-- 9. SELECT * FROM products WHERE price < 44.00;
+-- 10. SELECT * FROM products WHERE price > 22.50 AND price < 99.99;
+-- 11. UPDATE products SET price = price - 20.00;
+-- 12. DELETE FROM products WHERE price < 25;
+-- 13. UPDATE products SET price = price + 20.00;
+-- 14. UPDATE products SET can_be_returned = TRUE;
