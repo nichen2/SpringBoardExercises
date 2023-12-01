@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ post.title }}</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h2 class="mb-4">{{ post.title }}</h2>
+        <p class="mt-4">{{ post.content }}</p>
+        <p class="text-muted">Posted by: {{ post.user.first_name }} {{ post.user.last_name }}</p>
+        <p class="text-muted mb-4"><small>{{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</small></p>
+
+        <!-- Buttons -->
+        <a href="/users/{{ post.user.id }}" class="btn btn-secondary">Back</a>
+        <a href="/posts/{{ post.id }}/edit" class="btn btn-primary">Edit</a>
+        <form action="/posts/{{ post.id }}/delete" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
