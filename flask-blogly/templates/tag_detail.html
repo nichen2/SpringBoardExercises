@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ tag.name }}</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+
+        <h2>{{ tag.name }}</h2>
+        {% for post in posts %}
+        <li class="list-group-item"><a href="/posts/{{post.id}}">{{ post.title }}</a></li>
+        {% endfor %}
+
+        <!-- Buttons -->
+        <a href="/tags" class="btn btn-secondary mt-2">Back</a>
+        <a href="/tags/{{ tag.id }}/edit" class="btn btn-primary mt-2">Edit</a>
+        <form action="/tags/{{ tag.id }}/delete" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger mt-2">Delete</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

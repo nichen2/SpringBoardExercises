@@ -1,4 +1,4 @@
-from models import db, User, Post
+from models import db, User, Post, Tag, PostTag
 from datetime import datetime
 from app import app
 
@@ -18,6 +18,19 @@ posts = [
     Post(title="Tech News", content="Latest updates in technology.", user_id=3)
 ]
 
+tags = [
+    Tag(name="Sports"),
+    Tag(name="Funny"),
+    Tag(name="Lifestyle"),
+]
+
+posts_tags = [
+    PostTag(post_id="1",tag_id="1"),
+    PostTag(post_id="2",tag_id="1"),
+    PostTag(post_id="3",tag_id="1"),
+    PostTag(post_id="4",tag_id="1")
+]
+
 # Set up the Flask context
 with app.app_context():
     # Drop all to clean start, if desired
@@ -29,8 +42,13 @@ with app.app_context():
     db.session.add_all(users)
     db.session.commit()  # Users must be committed first to generate IDs
 
-
     db.session.add_all(posts)
     db.session.commit()  # Committing posts
+
+    db.session.add_all(tags)
+    db.session.commit()  # Comitting tags
+
+    db.session.add_all(posts_tags)
+    db.session.commit()  # Comitting posts_tags
 
     print("Database populated with sample data!")
