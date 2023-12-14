@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ pet.name }} Details</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="card mb-4" style="width: 18rem;">
+            <img src="{{ pet.photo_url }}" class="card-img-top" alt="{{ pet.name }} {{ pet.species }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ pet.name }}</h5>
+                <p class="card-text">Species: {{ pet.species }}</p>
+                {% if pet.age %}
+                <p class="card-text">Age: {{ pet.age }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <form action="/{{ pet.id }}" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.photo_url.label(class="form-label") }}
+                {{ form.photo_url(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.notes.label(class="form-label") }}
+                {{ form.notes(class="form-control") }}
+            </div>
+            <div class="form-group form-check">
+                {{ form.available(class="form-check-input") }}
+                {{ form.available.label(class="form-check-label") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Update Pet</button>
+        </form>
+        <br>
+        <a href="/" class="btn btn-secondary">Back</a>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

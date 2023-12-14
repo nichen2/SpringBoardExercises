@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User List</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <form action="/add" method="post">
+        {{ form.hidden_tag() }}
+        {% for field in form
+        if field.widget.input_type != 'hidden' %}
+        <p>
+            {{field.label}}
+            {{field}}
+        </p>
+        {% endfor %}
+        <button class="btn btn-primary">Add Pet</button>
+    </form>
+</body>
+
+</html>

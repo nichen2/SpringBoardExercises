@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User List</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h2>Adoption Agency</h2>
+        <div class="row">
+            {% for pet in pets %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ pet.photo_url }}" class="card-img-top pet-image" alt="{{ pet.species }}">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/{{ pet.id }}">{{ pet.name }}</a></h5>
+                        {% if pet.available %}
+                        <p class="card-text">Available for adoption!</p>
+                        {% else %}
+                        <p class="card-text">Not available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/add" class="btn btn-success mt-3">Add New Pet</a>
+    </div>
+</body>
+
+</html>
