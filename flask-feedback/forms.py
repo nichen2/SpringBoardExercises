@@ -13,3 +13,11 @@ class UserForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired(), validators.Length(max=20)])
     password = PasswordField("Password", validators=[InputRequired()])
+
+class FeedbackForm(FlaskForm):
+    title = StringField("Title", validators=[InputRequired()])
+    content = StringField("Feedback", validators=[InputRequired()])
+    
+class EditFeedbackForm(FlaskForm):
+    title = StringField("Edit Title", validators=[InputRequired()])
+    content = StringField("Edit Feedback", validators=[InputRequired()])

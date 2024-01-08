@@ -22,20 +22,21 @@
             <div class="card-body">
                 <h5 class="card-title text-info">
                     {{feedback.title}}
-                    {% if session['username'] == feedback.username %}
-                    <a href="/feedback/{{feedback.id}}" class="btn btn-primary">Edit</a>
-                    <form style="display:inline;" action="/feedback/{{feedback.id}}" method="POST">
-                        <button class="btn btn-sm btn-danger">Delete</i></button>
-                    </form>
-                    {% endif %}
                 </h5>
                 <p class="card-text">
                     {{feedback.content}}
                 </p>
-                <h6 class="card-subtitle mb-2 text-muted">{{feedback.username}}</h6>
+                <h6 class="card-subtitle mb-4 text-muted">posted by {{feedback.username}}</h6>
+                {% if session['username'] == feedback.username %}
+                <a href="/feedback/{{feedback.id}}/update" class="btn btn-primary btn-sm">Edit</a>
+                <form style="display:inline;" action="/feedback/{{feedback.id}}/delete" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</i></button>
+                </form>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
+        <a href="/users/{{user.username}}/feedback/add" class="btn btn-success">Add Feedback</a>
     </div>
 </div>
 
