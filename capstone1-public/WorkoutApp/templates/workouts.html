@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Build Your Workout</h2>
+
+    <!-- Exercise Selection -->
+    <div id="exercise-selection" class="mb-3">
+        <label for="exercise-dropdown">Choose an Exercise:</label>
+        <select id="exercise-dropdown" class="form-select">
+            <option value="">Select an Exercise</option>
+            <!-- Dynamically populate with exercises -->
+        </select>
+
+        <div class="mt-2">
+            <input type="number" id="sets" placeholder="Sets" class="form-control mb-2">
+            <input type="number" id="reps" placeholder="Reps" class="form-control mb-2">
+            <input type="number" id="weight" placeholder="Weight (lbs)" class="form-control mb-2">
+            <button id="add-exercise" class="btn btn-primary">Add Exercise</button>
+        </div>
+    </div>
+
+    <!-- Current Workout -->
+    <div id="current-workout" class="mb-3">
+        <h4>Your Workout:</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Exercise</th>
+                    <th>Sets</th>
+                    <th>Reps</th>
+                    <th>Weight</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Exercises will be listed here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Save Workout Button -->
+    <button id="submit-workout" class="btn btn-success">Save Workout</button>
+</div>
+{% endblock %}

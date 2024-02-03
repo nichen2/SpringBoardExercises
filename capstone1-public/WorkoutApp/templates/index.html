@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <header class="text-center mb-4">
+        <h1>Welcome back, {{ user.username }}!</h1>
+    </header>
+
+    <div class="row">
+        <!-- Total Workouts Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Workouts</h5>
+                    <p class="card-text">{{ user.workouts | length }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Volume Lifted Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Volume Lifted</h5>
+                    <p class="card-text">x lbs</p> <!-- Replace 'x' with dynamic content if available -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

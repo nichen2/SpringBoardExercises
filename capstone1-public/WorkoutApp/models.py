@@ -16,19 +16,20 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(30), nullable=False)
-    last_name = db.Column(db.String(30), nullable=False)
-    email = db.Column(db.Text, unique=True, nullable=False)
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
+    email = db.Column(db.Text, unique=True, nullable=False)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
     date_joined = db.Column(db.DateTime, default=datetime.utcnow)
+
     @classmethod
-    def register(cls, first_name, last_name, email, username, pwd, date_joined):
+    def register(cls, username,pwd,email,first_name,last_name):
         """Register user with hashed password and return user"""
         hashed = bcrypt.generate_password_hash(pwd)
         hashed_password = hashed.decode("utf8")
 
-        return cls(first_name=first_name, last_name=last_name, email=email, username=username, password=hashed_password, date_joined=date_joined)
+        return cls(first_name=first_name, last_name=last_name, email=email, username=username, password=hashed_password)
     
     @classmethod
     def authenticate(cls, username, pwd):
@@ -66,6 +67,6 @@ class WorkoutExercise(db.Model):
     __tablename__ = "workout_exercises"
 
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'), primary_key=True)
-    exercise_id = db.Column(db.Integer, db.ForeignKey('exercise.id'), primary_key=True)
+    exercise_id = db.Column(db.Integer, db.ForeignKey('exercises.id'), primary_key=True)
     sets = db.Column(db.Integer)
     duration = db.Column(db.Integer)
