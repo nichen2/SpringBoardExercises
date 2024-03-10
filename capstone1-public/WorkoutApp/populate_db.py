@@ -18,7 +18,7 @@ muscle_groups = [
 
 def fetch_exercises_for_muscle(api_key, muscle):
     api_url = 'https://api.api-ninjas.com/v1/exercises'
-    params = {'muscle': muscle}
+    params = {'muscle': muscle, 'offset': 20}
     response = requests.get(api_url, headers={'X-Api-Key': api_key}, params=params)
     
     if response.status_code == 200:

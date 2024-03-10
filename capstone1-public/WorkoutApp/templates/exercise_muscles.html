@@ -15,15 +15,13 @@
             style="position: absolute; z-index: 1000; width: 45%;"></div>
     </div>
     <hr>
-    <button type="button" class="btn btn-info mb-3 btn-sm muscle-group" id="group-by">-- Group By --</button>
-    <div id="muscle-group-tags" class="flex flex-wrap gap-2 mb-4 d-none">
-        {% for muscle in muscle_groups %}
-        <a href="/exercises/{{muscle}}" class="btn btn-outline-primary me-1 mb-1">
-            {{ muscle }}
+    <div id="back-button" class="flex flex-wrap gap-2 mb-4">
+        <span><b>Muscle Group:</b></span>
+        <a href="/exercises" class="btn btn-outline-primary me-1 mb-1">
+            - {{muscle}}
         </a>
-        {% endfor %}
     </div>
-    <div class="row exercise-list">
+    <div class="row">
         {% for exercise in exercises %}
         <div class="col-md-4 mb-3">
             <div class="card">
@@ -44,7 +42,7 @@
                     <a href="javascript:void(0);" class="btn btn-primary btn-sm mt-4 toggle-details">
                         View Details
                     </a>
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm mt-4 add-to-workout">
+                    <a href="javascript:void(0);" class="btn btn-success btn-sm mt-4 add-to-workout">
                         + to Workout
                     </a>
                 </div>
@@ -52,13 +50,12 @@
         </div>
         {% endfor %}
     </div>
-
     {% if pagination.pages > 1 %}
     <nav>
         <ul class="pagination">
             {% if pagination.has_prev %}
             <li class="page-item"><a class="page-link"
-                    href="{{ url_for('show_exercises', page=pagination.prev_num) }}">Previous</a></li>
+                    href="{{ url_for('show_muscle_group', muscle=muscle, page=pagination.prev_num) }}">Previous</a></li>
             {% else %}
             <li class="page-item disabled"><span class="page-link">Previous</span></li>
             {% endif %}
@@ -66,7 +63,9 @@
             {% for page in pagination.iter_pages() %}
             {% if page %}
             {% if page != pagination.page %}
-            <li class="page-item"><a class="page-link" href="{{ url_for('show_exercises', page=page) }}">{{ page }}</a>
+            <li class="page-item"><a class="page-link"
+                    href="{{ url_for('show_muscle_group', muscle=muscle, page=page) }}">
+                    {{ page }}</a>
             </li>
             {% else %}
             <li class="page-item active"><span class="page-link">{{ page }}</span></li>
@@ -78,7 +77,7 @@
 
             {% if pagination.has_next %}
             <li class="page-item"><a class="page-link"
-                    href="{{ url_for('show_exercises', page=pagination.next_num) }}">Next</a></li>
+                    href="{{ url_for('show_muscle_group', muscle=muscle, page=pagination.next_num) }}">Next</a></li>
             {% else %}
             <li class="page-item disabled"><span class="page-link">Next</span></li>
             {% endif %}

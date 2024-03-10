@@ -69,4 +69,19 @@ class WorkoutExercise(db.Model):
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'), primary_key=True)
     exercise_id = db.Column(db.Integer, db.ForeignKey('exercises.id'), primary_key=True)
     sets = db.Column(db.Integer)
-    duration = db.Column(db.Integer)
+    reps = db.Column(db.Integer)
+
+# When making log we need to change this, log has to be independent of Workout because if a user ever touched workouts then it would affect past log
+# Also, because if a user editted their workout or deleted it, information on log needs to persist
+class WorkoutLog(db.Model):
+    __tablename__ = "workout_logs"
+
+    id = db.Column(db.Integer, primary_key=True)
+    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    completed_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    workout_type = db.Column(db.Text)  # For example: "Upper Body", "Cardio", etc.
+    notes = db.Column(db.Text)
+
+    workout = db.relationship('Workout', backref='logs')
+    user = db.relationship('User', backref='workout_logs')
