@@ -8,7 +8,7 @@ let dbName;
 if (process.env.NODE_ENV === "test") {
   dbName = 'biztime_test'
 } else {
-  dbName = "biztime";
+  dbName = 'biztime';
 }
 
 let db = new Client({
