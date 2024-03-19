@@ -66,8 +66,8 @@ router.put('/:code', async (req, res, next) => {
 
 router.post('/:code/industries', async (req, res, next) => {
     try {
-        const { code } = req.params; // Company code
-        const { industryCode } = req.body; // Industry code
+        const { code } = req.params; 
+        const { industryCode } = req.body;
 
         const companyCheck = await db.query('SELECT * FROM companies WHERE code = $1', [code]);
         if (companyCheck.rows.length === 0) {
