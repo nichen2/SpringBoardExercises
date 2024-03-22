@@ -14,6 +14,12 @@ class Customer {
     this.notes = notes;
   }
 
+  /** Get full name */ 
+  fullName() {
+    const fullName = `${this.firstName} ${this.lastName}`;
+    this.fullName = fullName;
+  }
+
   /** find all customers. */
 
   static async all() {
@@ -78,6 +84,8 @@ class Customer {
       );
     }
   }
+
 }
+
 
 module.exports = Customer;

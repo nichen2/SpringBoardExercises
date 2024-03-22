@@ -12,6 +12,7 @@ const router = new express.Router();
 router.get("/", async function(req, res, next) {
   try {
     const customers = await Customer.all();
+    customers.map(customer => customer.fullName());
     return res.render("customer_list.html", { customers });
   } catch (err) {
     return next(err);
@@ -51,7 +52,7 @@ router.post("/add/", async function(req, res, next) {
 router.get("/:id/", async function(req, res, next) {
   try {
     const customer = await Customer.get(req.params.id);
-
+    customer.fullName();
     const reservations = await customer.getReservations();
 
     return res.render("customer_detail.html", { customer, reservations });
@@ -65,7 +66,7 @@ router.get("/:id/", async function(req, res, next) {
 router.get("/:id/edit/", async function(req, res, next) {
   try {
     const customer = await Customer.get(req.params.id);
-
+    customer.fullName();
     res.render("customer_edit_form.html", { customer });
   } catch (err) {
     return next(err);
@@ -81,6 +82,7 @@ router.post("/:id/edit/", async function(req, res, next) {
     customer.lastName = req.body.lastName;
     customer.phone = req.body.phone;
     customer.notes = req.body.notes;
+    customer.fullName();
     await customer.save();
 
     return res.redirect(`/${customer.id}/`);
