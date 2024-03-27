@@ -1,12 +1,18 @@
 /** Database connection for messagely. */
 
-
 const { Client } = require("pg");
-const { DB_URI } = require("./config");
+require('dotenv').config();
 
-const client = new Client(DB_URI);
+const { DB_NAME } = require("./config");
+
+const client = new Client({
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: DB_NAME
+});
 
 client.connect();
-
 
 module.exports = client;
