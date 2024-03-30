@@ -67,12 +67,12 @@ class Company {
   static async filterBy(params) {
     const { name, minEmployees, maxEmployees} = params;
     let query = `SELECT handle,
-                              name,
-                              description,
-                              num_employees AS "numEmployees",
-                              logo_url AS "logoUrl"
-                       FROM companies
-                       WHERE 1=1`;
+                        name,
+                        description,
+                        num_employees AS "numEmployees",
+                        logo_url AS "logoUrl"
+                 FROM companies
+                 WHERE 1=1`;
     const values = [];
     const filterQueries = [];
     let idx = 0;

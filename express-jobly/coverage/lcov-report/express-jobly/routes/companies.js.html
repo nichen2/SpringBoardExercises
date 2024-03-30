@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.87% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>46/47</span>
+                <span class='fraction'>47/47</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.77% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/45</span>
+                <span class='fraction'>45/45</span>
             </div>
         
             
@@ -242,17 +242,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -323,7 +323,7 @@ const jsonschema = require("jsonschema");
 const express = require("express");
 &nbsp;
 const { BadRequestError, ExpressError } = require("../expressError");
-const { ensureLoggedIn } = require("../middleware/auth");
+const { ensureLoggedIn, ensureIsAdmin } = require("../middleware/auth");
 const Company = require("../models/company");
 &nbsp;
 const companyNewSchema = require("../schemas/companyNew.json");
@@ -338,10 +338,10 @@ const router = new express.Router();
  *
  * Returns { handle, name, description, numEmployees, logoUrl }
  *
- * Authorization required: login
+ * Authorization required: admin
  */
 &nbsp;
-router.post("/", ensureLoggedIn, async function (req, res, next) {
+router.post("/", ensureIsAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, companyNewSchema);
     if (!validator.valid) {
@@ -360,18 +360,18 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
  *   { companies: [ { handle, name, description, numEmployees, logoUrl }, ...] }
  *
  * Can filter on provided search filters:
- * - minEmployees
+ * - name (will find case-insensitive, partial matches. Ex: Searching "net" can return "Netflix")
+ * - minEmployees (cannot surpass maxEmployees)
  * - maxEmployees
- * - nameLike (will find case-insensitive, partial matches)
- *
+ * 
  * Authorization required: none
  */
 &nbsp;
 router.get("/", async function (req, res, next) {
   try {
     const { name, minEmployees, maxEmployees} = req.query;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (parseInt(minEmployees) &gt; parseInt(maxEmployees)) {
-<span class="cstat-no" title="statement not covered" >      throw new ExpressError("Minimum employees cannot surpass maximum employees", 400)</span>
+    if (parseInt(minEmployees) &gt; parseInt(maxEmployees)) {
+      throw new ExpressError("Minimum employees cannot surpass maximum employees", 400)
     }
     const companies = (name || minEmployees || maxEmployees) 
       ? await Company.filterBy(req.query) 
@@ -407,10 +407,10 @@ router.get("/:handle", async function (req, res, next) {
  *
  * Returns { handle, name, description, numEmployees, logo_url }
  *
- * Authorization required: login
+ * Authorization required: admin
  */
 &nbsp;
-router.patch("/:handle", ensureLoggedIn, async function (req, res, next) {
+router.patch("/:handle", ensureIsAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, companyUpdateSchema);
     if (!validator.valid) {
@@ -427,10 +427,10 @@ router.patch("/:handle", ensureLoggedIn, async function (req, res, next) {
 &nbsp;
 /** DELETE /[handle]  =&gt;  { deleted: handle }
  *
- * Authorization: login
+ * Authorization: admin
  */
 &nbsp;
-router.delete("/:handle", ensureLoggedIn, async function (req, res, next) {
+router.delete("/:handle", ensureIsAdmin, async function (req, res, next) {
   try {
     await Company.remove(req.params.handle);
     return res.json({ deleted: req.params.handle });
@@ -448,7 +448,7 @@ module.exports = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-29T11:33:44.348Z
+                at 2024-03-30T00:14:27.678Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
