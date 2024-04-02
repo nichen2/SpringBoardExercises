@@ -6,8 +6,9 @@ const jsonschema = require("jsonschema");
 
 const express = require("express");
 const { ensureLoggedIn, ensureIsAdmin, ensureUserOrAdmin } = require("../middleware/auth");
-const { BadRequestError } = require("../expressError");
+const { BadRequestError, ExpressError } = require("../expressError");
 const User = require("../models/user");
+const Job = require("../models/job");
 const { createToken } = require("../helpers/tokens");
 const userNewSchema = require("../schemas/userNew.json");
 const userUpdateSchema = require("../schemas/userUpdate.json");
@@ -43,6 +44,26 @@ router.post("/", ensureIsAdmin, async function (req, res, next) {
   }
 });
 
+/** POST /:username/jobs/:id  => { applied: jobId }
+ *
+ * Allows a user to apply for jobs, an admin can also apply for jobs
+ * for a user
+ * 
+ * Authorization required: admin, user
+ **/
+
+router.post("/:username/jobs/:id", ensureUserOrAdmin, async function (req, res, next) {
+  try {
+    const {username, id} = req.params;
+    await User.get(username);
+    await Job.get(id);
+    await User.applyForJob(username,id);
+
+    return res.json({applied: parseInt(id)});
+  } catch (err) {
+    return next(err);
+  }
+});
 
 /** GET / => { users: [ {username, firstName, lastName, email }, ... ] }
  *

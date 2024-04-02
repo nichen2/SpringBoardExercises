@@ -12,6 +12,7 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
+  getJobId,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -133,6 +134,8 @@ describe("findAll", function () {
 
 describe("get", function () {
   test("works", async function () {
+    const id = await getJobId();
+    User.applyForJob("u1",id)
     let user = await User.get("u1");
     expect(user).toEqual({
       username: "u1",
@@ -140,6 +143,7 @@ describe("get", function () {
       lastName: "U1L",
       email: "u1@email.com",
       isAdmin: false,
+      jobs: [id],
     });
   });
 
@@ -227,4 +231,17 @@ describe("remove", function () {
       expect(err instanceof NotFoundError).toBeTruthy();
     }
   });
+});
+
+/************************************** apply for job */
+
+describe("apply for job", function () {
+  test("works", async function () {
+    const id = await getJobId();
+    const res = await User.applyForJob("u1", id);
+    expect(res).toEqual({
+      jobId: id,
+    })
+  });
+
 });
