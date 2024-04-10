@@ -1,0 +1,51 @@
+.tweet {
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #fff;
+    font-family: 'Arial', sans-serif;
+    max-width: 500px;
+}
+
+.tweet-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.user-info h2,
+.user-info h4 {
+    margin: 0;
+}
+
+h2 {
+    font-size: 1em;
+}
+
+h4 {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.date {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.message {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #333;
+}
