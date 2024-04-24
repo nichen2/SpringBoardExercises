@@ -1,0 +1,15 @@
+.Board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+  width: 50vw;
+  /* 50% of the viewport width */
+  height: 50vw;
+  /* Keeps the aspect ratio square */
+  max-width: 300px;
+  /* Maximum size */
+  max-height: 300px;
+  /* Maximum size */
+  margin: 5px auto;
+}
