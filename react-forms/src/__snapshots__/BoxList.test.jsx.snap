@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BoxList Component > matches snapshot 1`] = `
+<DocumentFragment>
+  <ul />
+  <form>
+    <label
+      for="width"
+    >
+      Width
+    </label>
+    <input
+      id="width"
+      name="width"
+      placeholder="width"
+      type="text"
+      value=""
+    />
+    <label
+      for="height"
+    >
+      Height
+    </label>
+    <input
+      id="height"
+      name="height"
+      placeholder="height"
+      type="text"
+      value=""
+    />
+    <label
+      for="color"
+    >
+      Background Color
+    </label>
+    <input
+      id="color"
+      name="color"
+      placeholder="color"
+      type="text"
+      value=""
+    />
+    <button>
+      Add New Box
+    </button>
+  </form>
+</DocumentFragment>
+`;
