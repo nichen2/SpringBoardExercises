@@ -158,7 +158,7 @@ describe("GET /jobs", function () {
   });
 });
 
-/************************************** GET /companies/:handle */
+/************************************** GET /jobs/:id */
 
 describe("GET /jobs/:id", function () {
   test("works for anon", async function () {

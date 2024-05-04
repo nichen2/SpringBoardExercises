@@ -2,10 +2,12 @@ const { BadRequestError } = require("../expressError");
 
 /*
 Helper function for patch requests in companies and users models.
+
 The function allows for partial update of a Company or User object
 in postgreSQL database by parsing the provided data in the object
 and it returns an object that provides pieces of a SQL query.
 */
+
 function sqlForPartialUpdate(dataToUpdate, jsToSql) {
   // Extract the keys to be updated
   const keys = Object.keys(dataToUpdate);
