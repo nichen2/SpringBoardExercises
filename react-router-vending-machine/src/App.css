@@ -40,3 +40,34 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Styling for the navbar */
+.navbar {
+  background-color: #050505;  /* Dark blue background */
+  padding: 12px 24px;          /* Padding around the navbar */
+  display: flex;               /* Layout links in a row */
+  justify-content: center;     /* Center links horizontally */
+  align-items: center;         /* Align links vertically */
+  gap: 15px;                   /* Space between links */
+}
+
+/* Styling for each link in the navbar */
+.navbar a {
+  color: white;                      /* White text color */
+  padding: 10px 20px;                /* Padding inside each link */
+  text-decoration: none;             /* Remove underline */
+  border-radius: 5px;                /* Rounded corners */
+  background-color: #6c8591;         /* Lighter blue background */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+/* Hover effect for links */
+.navbar a:hover {
+  background-color: #0059b3; /* Darken background on hover */
+  cursor: pointer;           /* Change cursor to pointer */
+}
+
+/* Active link effect */
+.navbar a:active {
+  background-color: #004080; /* Even darker blue for active state */
+}
