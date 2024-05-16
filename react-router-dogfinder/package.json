@@ -8,12 +8,13 @@
     "@testing-library/user-event": "*",
     "axios": "*",
     "concurrently": "*",
-    "json-server": "*",
+    "json-server": "^0.17.4",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "*",
     "react-scripts": "*",
-    "web-vitals": "*"
+    "web-vitals": "*",
+    "yarn": "^1.22.22"
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run start-fe\" \"npm run start-be\"",
