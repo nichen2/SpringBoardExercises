@@ -5,8 +5,8 @@ import DogDetails from './DogDetails';
 
 function App({ dogs }) {
   return (
-    <div className="App">
-      <BrowserRouter>
+    <div className="App">      
+    <BrowserRouter>
         <Routes>
           <Route exact path="/dogs" element={<DogList dogs={dogs}/>}/> 
           <Route path="/dogs/:name" element={<DogDetails dogs={dogs}/>}/>
